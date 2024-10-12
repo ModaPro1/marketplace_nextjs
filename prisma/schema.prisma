@@ -35,7 +35,6 @@ model Merchant {
   password    String
   products Product[]
   notifications MerchantNotification[]
-
   isAccepted Boolean @default(false)
 
   createdAt   DateTime @default(now()) @map(name: "created_at")
