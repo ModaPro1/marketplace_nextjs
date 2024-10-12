@@ -1,0 +1,207 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  output = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+
+  cart Cart[]
+  shipping_infos ShippingInfo[]
+  orders Order[]
+  likes ProductLike[]
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@map(name: "users")
+}
+
+model Merchant {
+  id          String   @id @default(cuid())
+  store_name  String
+  store_image String
+  email       String   @unique
+  password    String
+  products Product[]
+  notifications MerchantNotification[]
+
+  isAccepted Boolean @default(false)
+
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @updatedAt @map(name: "updated_at")
+
+  @@map(name: "merchants")
+}
+
+model Category {
+  id   String @id @default(cuid())
+  name String @unique
+
+  products Product[]
+
+  @@map(name: "categories")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description        String
+  return_policy_text        String
+  shipping_info_text String
+  price       Float
+  shipping_price       Float @default(0)
+  images_list String[]
+  
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  merchantId  String
+  merchant    Merchant @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+
+  options     ProductOption[]
+
+  carts Cart[]
+
+  likes ProductLike[]
+
+  orderProducts OrderProduct[]
+
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @updatedAt @map(name: "updated_at")
+  @@map(name: "products")
+}
+
+model ProductOption {
+  id          String   @id @default(cuid())
+  name        String
+  price       Int @default(0)
+
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  carts       Cart[]
+
+  orderProducts OrderProduct[]
+
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @updatedAt @map(name: "updated_at")
+  @@map(name: "product_option")
+}
+
+model Cart {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  optionId    String?
+  option      ProductOption? @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  quantity    Int      @default(1)
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @updatedAt @map(name: "updated_at")
+
+  @@map(name: "carts")
+}
+
+model ShippingInfo {
+  id              String   @id @default(cuid())
+  userId          String
+  
+  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address         String
+  country         String
+
+  orders          Order[]
+
+  createdAt       DateTime @default(now()) @map(name: "created_at")
+  updatedAt       DateTime @updatedAt @map(name: "updated_at")
+
+  @@map(name: "shipping_infos")
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  email           String
+  name            String
+  phone           String
+
+  addressId       String
+  address         ShippingInfo @relation(fields: [addressId], references: [id], onDelete: Cascade)
+
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  sessionId       String   @unique
+  shippingPrice   Float @default(0)
+  totalPrice      Float
+
+  products        OrderProduct[]
+
+  status          String
+  seen            Boolean @default(false)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt @map(name: "updated_at")
+
+  @@map(name: "orders")
+}
+
+model OrderProduct {
+  id          String   @id @default(cuid())
+  orderId     String
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  optionId    String?
+  option      ProductOption? @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  quantity    Int
+  price       Float   // Price at the time of ordering
+
+  @@map(name: "order_products")
+}
+
+model ProductLike {
+  id          String   @id @default(cuid())
+
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  userId      String
+  user        User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+
+  @@map(name: "products_likes")
+}
+
+model MerchantNotification {
+  id          Int       @id @default(autoincrement())
+  merchantId  String       
+  merchant    Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  message     String   
+  type        NotificationType @default(OTHER)
+  isRead      Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+
+  @@map(name: "merchant_notifications")
+}
+
+enum NotificationType {
+  ACCOUNT_ACTIVATION
+  NEW_ORDER
+  OTHER
+}

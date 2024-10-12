@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+<<<<<<< HEAD
+
+input[type=number] {
+=======
+td, th {
+  white-space: nowrap;
+}
+
+input[type="number"] {
+>>>>>>> master
+  -moz-appearance: textfield;
+}
+select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 1 4 4 4-4'/%3E%3C/svg%3E");
+<<<<<<< HEAD
+  background-position: right .75rem center;
+  background-repeat: no-repeat;
+  background-size: .75em .75em;
+=======
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 0.75em 0.75em;
+>>>>>>> master
+  padding-right: 2.5rem;
+  -webkit-print-color-adjust: exact;
+  appearance: none;
+}
+
+.custom-container {
+<<<<<<< HEAD
+  @apply px-4 mx-auto max-w-container-lg md:max-w-container-md lg:max-w-container-lg xl:max-w-container-xl 2xl:max-w-container-2xl;
+}
+=======
+  @apply px-4 mx-auto max-w-container-lg md:max-w-container-md lg:max-w-container-lg xl:max-w-container-xl;
+}
+
+.main-input {
+  @apply transition bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-main focus:border-main block w-full p-2;
+}
+.main-input-error {
+  @apply transition bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2;
+}
+.input-file {
+  @apply p-0 text-sm
+  file:mr-4 file:py-2 file:px-4
+  file:rounded-lg file:border-0
+  file:text-sm file:font-semibold
+  file:bg-[#00968729] file:text-main;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  overflow: visible !important;
+}
+.swiper img {
+  width: 100%;
+  height: 100%;
+}
+.custom-pagination-swiper .swiper-pagination {
+  position: static !important;
+  margin-top: 20px;
+  color: #000;
+  text-align: left !important;
+  display: flex;
+  gap: 10px;
+}
+.custom-pagination-swiper .swiper-pagination-bullet {
+  width: 100px !important;
+  height: 100px !important;
+}
+.custom-pagination-swiper .swiper-pagination-bullet {
+  cursor: pointer;
+  opacity: .4;
+  transition: .3s;
+}
+.custom-pagination-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+@media (max-width: 991px) {
+  .custom-pagination-swiper .swiper-pagination-bullet {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
+>>>>>>> master
