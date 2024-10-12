@@ -1,15 +1,10 @@
 import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-<<<<<<< HEAD
-=======
 import crypto from "node:crypto";
->>>>>>> master
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-<<<<<<< HEAD
-=======
 
 export function hashUserPassword(password: string) {
   const salt = crypto.randomBytes(16).toString("hex");
@@ -32,4 +27,3 @@ export function formatZodError(formattedErrors: Record<string, any>): Record<str
   }
   return errors;
 }
->>>>>>> master

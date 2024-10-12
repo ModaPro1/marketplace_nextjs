@@ -36,11 +36,7 @@ export default function Categories() {
         <div className="list flex justify-center mt-10 gap-10 flex-wrap">
           {categories.map((category) => {
             return (
-<<<<<<< HEAD
-              <Link href="#" className="text-center w-[100px] md:w-[120]">
-=======
               <Link key={category.name} href={`/products?cat=${encodeURIComponent(category.name)}`} className="text-center w-[100px] md:w-[120]">
->>>>>>> master
                 <Image src={`/assets/categories/${category.image}`} alt={category.name} width={440} height={440} className="rounded-full" />
                 <h5 className="mt-5 leading-5">{category.name}</h5>
               </Link>

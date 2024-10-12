@@ -10,11 +10,7 @@ export default function Landing() {
           <h1 className="font-bold mx-auto text-3xl md:text-4xl md:w-[800px]">
             Welcome to Modastore Where <span className="text-main">Creativity Meets Commerce</span>
           </h1>
-<<<<<<< HEAD
-          <a href="#categories" className="w-fit mt-5 p-2.5 uppercase rounded-md font-medium text-xs md:text-sm text-white bg-black border-2 border-black mx-auto transition hover:bg-transparent hover:text-black">
-=======
           <a href="#categories" className="w-fit mt-5 p-2.5 uppercase rounded-md font-medium text-xs md:text-sm text-white bg-black border-2 border-black mx-auto transition duration-300 hover:bg-transparent hover:text-black">
->>>>>>> master
             <BiStore className="inline text-lg me-2" />
             Shop now
           </a>

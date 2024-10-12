@@ -26,14 +26,6 @@ const config: Config = {
         xl: "1400px",
       },
       maxWidth: {
-<<<<<<< HEAD
-        "container-sm": "540px",
-        "container-md": "720px",
-        "container-lg": "960px",
-        "container-xl": "1140px",
-        "container-2xl": "1320px",
-      },
-=======
         "container-sm": "720px",
         "container-md": "960px",
         "container-lg": "1140px",
@@ -45,7 +37,6 @@ const config: Config = {
           '50%': { transform: 'scale(1.1)' },
         }
       }
->>>>>>> master
     },
   },
   plugins: [

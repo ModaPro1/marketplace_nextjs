@@ -1,7 +1,7 @@
 import { sendMerchantNotification } from "@/actions/merchant";
 import { sendPaymentSuccessMail } from "@/lib/mail";
 import { prisma } from "@/lib/prisma";
-import { Cart, Product, ProductOption } from ".prisma/client";
+import { Cart, Product, ProductOption } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 

@@ -1,35 +1,3 @@
-<<<<<<< HEAD
-import { ReactNode, useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-
-export default function Dropdown({ icon, children }: { icon: ReactNode; children: ReactNode }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null)
-
-  // Handling Outside Click (including another dropdown click)
-  
-  useEffect(() => {
-    const handleDocumentClick = (e: MouseEvent) => {
-      
-      const target = e.target as Node;
-      if (!dropdownRef.current?.contains(target)) {
-        setIsOpen(false)
-      }
-    };
-
-    document.addEventListener("click", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, []);
-
-  return (
-    <div className="dropdown relative" ref={dropdownRef}>
-      <button className="dropdown-icon cursor-pointer block" onClick={() => setIsOpen((prev) => !prev)}>
-        {icon}
-      </button>
-=======
 "use client";
 
 import { ReactNode, useState, useEffect, useRef } from "react";
@@ -93,16 +61,11 @@ export default function Dropdown({
           {icon}
         </button>
       </div>
->>>>>>> master
       <motion.div
         initial={{ display: "none", opacity: 0, scale: 0.9 }}
         animate={{ display: isOpen ? "block" : "none", opacity: isOpen ? 1 : 0, scale: isOpen ? 1 : 0.9 }}
         transition={{ duration: 0.2 }}
-<<<<<<< HEAD
-        className="dropdown-content absolute w-32 right-0 top-[calc(100%+5px)] rounded-md border border-gray-300 bg-white"
-=======
         className="dropdown-content absolute min-w-32 right-0 top-[calc(100%+5px)] rounded-md border border-gray-100 shadow-md bg-white overflow-hidden"
->>>>>>> master
       >
         {children}
       </motion.div>
