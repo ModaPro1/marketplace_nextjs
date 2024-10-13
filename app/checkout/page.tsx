@@ -1,3 +1,4 @@
+import DashboardSpinner from "@/components/Merchant/DashboardSpinner";
 import MainLogo from "@/components/ui/Logo";
 import CheckoutSkeleton from "@/components/ui/skeleton/Checkout";
 import CheckoutMainForm from "@/components/User/CheckoutMainForm";
@@ -44,7 +45,7 @@ export default async function CheckoutPage() {
       </nav>
       <main className="bg-[#f4f5f7] min-h-[100vh]">
         <div className="px-4 w-full sm:max-w-screen-lg mx-auto">
-          <Suspense fallback={<CheckoutSkeleton />}>
+          <Suspense fallback={<DashboardSpinner />}>
             <PageContent />
           </Suspense>
         </div>

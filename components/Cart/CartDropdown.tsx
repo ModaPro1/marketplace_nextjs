@@ -25,7 +25,7 @@ export default function CartDropdown() {
                       width={100}
                       height={100}
                       alt="Product Image"
-                      className="w-16 h-16"
+                      className="w-16 h-16 object-cover"
                     />
                   </Link>
                   <div className="flex-1">
