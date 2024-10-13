@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { CgSpinnerAlt } from "react-icons/cg";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ItemQuantity from "./Cart/Quantity";
+import ItemQuantity from "./Quantity";
 import { CartContext } from "@/context/UserCartContext";
 
 export default function ProductCartData({ product }: { product: Product & { options: ProductOption[] } }) {
