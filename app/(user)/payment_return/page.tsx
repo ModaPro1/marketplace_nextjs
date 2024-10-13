@@ -5,20 +5,21 @@ import { FaCircleXmark } from "react-icons/fa6";
 
 export default async function PaymentReturnPage({ searchParams }: { searchParams: any }) {
   const sessionId = searchParams.session_id;
-  if (!sessionId) {
-    notFound();
-  }
+  // if (!sessionId) {
+  //   notFound();
+  // }
   // const result = await fetch(`${process.env.SITE_URL}/api/checkout_session?session_id=${sessionId}`, {cache: "no-store"});
 
   // const data = await result.json();
-
+  
   // if(data.error) {
   //   notFound()
   // }
 
   return (
     <>
-      {/* {data.status == "complete" ? (
+      <div className="text-center pt-40 min-h-[100vh] bg-[#f4f5f7]">
+        {/* {data.status == "complete" ? (
           <div className="mx-auto box bg-white p-5 rounded-md shadow w-full sm:w-96 border-b-4 border-[#28a745]">
             <FaCheckCircle fontSize={55} className="text-[#28a745] inline" />
             <h2 className="my-4 text-3xl font-medium">Your payment was successful</h2>
@@ -44,6 +45,7 @@ export default async function PaymentReturnPage({ searchParams }: { searchParams
             Contact us
           </Link>
         </p> */}
+      </div>
     </>
   );
 }
