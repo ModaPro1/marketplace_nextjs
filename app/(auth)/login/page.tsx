@@ -1,4 +1,4 @@
-import { userLoginWithEmail } from "@/actions/auth";
+// import { userLoginWithEmail } from "@/actions/auth";
 import Form from "@/components/ui/Form";
 import { BiLock } from "react-icons/bi";
 
@@ -15,7 +15,7 @@ export default function LoginPage() {
           <BiLock className="text-xl" />
           Login to your account
         </h1>
-        <Form formClasses="space-y-2" inputs={inputs} action={userLoginWithEmail} buttonText="Sign in" />
+        {/* <Form formClasses="space-y-2" inputs={inputs} action={userLoginWithEmail} buttonText="Sign in" /> */}
       </div>
     </div>
   );
