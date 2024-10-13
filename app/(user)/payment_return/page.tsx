@@ -1,4 +1,3 @@
-import MainNavbar from "@/components/Navbar";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaCheckCircle } from "react-icons/fa";
@@ -9,19 +8,17 @@ export default async function PaymentReturnPage({ searchParams }: { searchParams
   if (!sessionId) {
     notFound();
   }
-  const result = await fetch(`${process.env.SITE_URL}/api/checkout_session?session_id=${sessionId}`, {cache: "no-store"});
+  // const result = await fetch(`${process.env.SITE_URL}/api/checkout_session?session_id=${sessionId}`, {cache: "no-store"});
 
-  const data = await result.json();
-  
-  if(data.error) {
-    notFound()
-  }
+  // const data = await result.json();
+
+  // if(data.error) {
+  //   notFound()
+  // }
 
   return (
     <>
-      <MainNavbar />
-      <div className="text-center pt-40 min-h-[100vh] bg-[#f4f5f7]">
-        {data.status == "complete" ? (
+      {/* {data.status == "complete" ? (
           <div className="mx-auto box bg-white p-5 rounded-md shadow w-full sm:w-96 border-b-4 border-[#28a745]">
             <FaCheckCircle fontSize={55} className="text-[#28a745] inline" />
             <h2 className="my-4 text-3xl font-medium">Your payment was successful</h2>
@@ -46,8 +43,7 @@ export default async function PaymentReturnPage({ searchParams }: { searchParams
           <Link href="/contact" className="underline">
             Contact us
           </Link>
-        </p>
-      </div>
+        </p> */}
     </>
   );
 }
