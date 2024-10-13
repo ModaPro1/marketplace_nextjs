@@ -1,20 +1,16 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 
-export default function ProductsFilter({
-  categories,
-  searchParams,
-}: {
-  categories: { id: string; name: string }[];
-  searchParams: any;
-}) {
+export default function ProductsFilter({ categories }: { categories: { id: string; name: string }[] }) {
   const router = useRouter();
-  const [category, setCategory] = useState(searchParams.cat || "");
-  const [sort, setSort] = useState(searchParams.sort);
-  const [maxPrice, setMaxPrice] = useState(searchParams.maxPrice || "");
-  const [minPrice, setMinPrice] = useState(searchParams.minPrice || "");
+  const searchParams = useSearchParams();
+
+  const [category, setCategory] = useState(searchParams.get("cat") || "");
+  const [sort, setSort] = useState(searchParams.get("sort") || "");
+  const [maxPrice, setMaxPrice] = useState(searchParams.get("maxPrice") || "");
+  const [minPrice, setMinPrice] = useState(searchParams.get("minPrice") || "");
 
   function filterChange(id: string, value: string) {
     if (id == "cat") {
@@ -24,6 +20,7 @@ export default function ProductsFilter({
     }
     const currentParams = new URLSearchParams(window.location.search);
     currentParams.set(id, value);
+    currentParams.delete("page");
     const newPathname = `${window.location.pathname}?${currentParams.toString()}`;
     router.push(newPathname);
   }

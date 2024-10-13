@@ -10,7 +10,7 @@ export default function ProductBox(props: { product: Product; isAdmin?: boolean}
   return (
     <div className="product relative">
       <div className="h-48 md:h-56">
-        <ImagesSlider images={props.product.images_list} delay={2500} />
+        <ImagesSlider images={props.product.images_list} imageProps={{sizes: "(max-width: 767px) 50vw, (max-width: 991px) 33vw, 25vw"}} delay={2500} />
       </div>
       <div className="flex justify-between items-center">
         <h3 className="mt-5">{props.product.name}</h3>

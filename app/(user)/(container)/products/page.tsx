@@ -5,11 +5,11 @@ import { PrismaClient } from "@prisma/client";
 import { Suspense } from "react";
 import ProductsSkeleton from "@/components/ui/skeleton/Products";
 
-async function Filter(props: {searchParams: any}) {
+async function Filter(props: { searchParams: any }) {
   const prisma = new PrismaClient();
   const categories = await prisma.category.findMany();
 
-  return <ProductsFilter searchParams={props.searchParams} categories={categories} />;
+  return <ProductsFilter categories={categories} />;
 }
 
 export default async function ProductsPage({ searchParams }: { searchParams: any }) {

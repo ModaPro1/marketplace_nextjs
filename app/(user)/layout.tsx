@@ -1,4 +1,4 @@
-import MainNavbar from "@/components/Navbar";
+import MainNavbar from "@/components/User/Navbar";
 import { CartContextProvider } from "@/context/UserCartContext";
 import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
