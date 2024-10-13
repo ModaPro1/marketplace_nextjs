@@ -1,4 +1,4 @@
-import ProductCartData from "@/components/ProductCartData";
+import ProductCartData from "@/components/Cart/ProductCartData";
 import ImagesSlider from "@/components/ui/ImagesSlider";
 import ProductPageSkeleton from "@/components/ui/skeleton/ProductPage";
 import { prisma } from "@/lib/prisma";
