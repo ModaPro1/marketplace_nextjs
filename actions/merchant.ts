@@ -3,7 +3,7 @@
 import { getSession } from "@/lib/auth";
 import { uploadImage } from "@/lib/cloudinary";
 import { prisma } from "@/lib/prisma";
-import { productSchema, productSchemaWithoutImage } from "@/lib/validationSchemas";
+import { merchantSchema, productSchema, productSchemaWithoutImage } from "@/lib/validationSchemas";
 import { redirect } from "next/navigation";
 import { cache } from "react";
 
@@ -124,7 +124,7 @@ export const getOrders = cache(async () => {
   const session = await getSession();
   const orders = await prisma.order.findMany({
     where: {
-      status: {not: "pending"},
+      status: { not: "pending" },
       products: {
         some: {
           product: {
@@ -182,5 +182,41 @@ export async function getMerchantNotifications() {
     orderBy: { createdAt: "desc" },
   });
 
-  return notifications
+  return notifications;
+}
+
+export async function editProfile(formData: FormData, merchantId: string) {
+  const data = {
+    store_name: formData.get("store_name") as string,
+    store_image: formData.get("store_image") as File,
+    email: formData.get("email") as string,
+  };
+  merchantSchema.parse(data);
+  const merchant = await prisma.merchant.findUnique({ where: { id: merchantId } });
+  if (!merchant) {
+    return {success: false};
+  }
+
+  if (data.email != merchant.email) {
+    // edit email
+    const existingUserEmail = await prisma.user.findUnique({ where: { email: data.email } });
+    const existingMerchantEmail = await prisma.merchant.findUnique({ where: { email: data.email } });
+
+    if (existingUserEmail || existingMerchantEmail) {
+      return { success: false, type: "email_taken", message: "Email is already taken." };
+    }
+
+    await prisma.merchant.update({ where: { id: merchantId }, data: { email: data.email } });
+  }
+
+  if(data.store_image) {
+    // edit image
+    const imageurl = await uploadImage(data.store_image)
+    await prisma.merchant.update({ where: { id: merchantId }, data: { store_image: imageurl } });
+  }
+
+  // edit name
+  await prisma.merchant.update({ where: { id: merchantId }, data: { store_name: data.store_name } })
+
+  return { success: true };
 }

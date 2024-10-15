@@ -14,6 +14,9 @@ async function Products() {
         id: session.userId,
       },
     },
+    include: {
+      likes: true
+    }
   });
 
   if (merchantProducts.length == 0) {
@@ -40,7 +43,7 @@ async function Products() {
       </Link>
       <div className="products mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {merchantProducts.map((product) => {
-          return <ProductBox isAdmin={true} key={product.id} product={product} />;
+          return <ProductBox isAdmin={true} key={product.id} product={product} likes={product.likes.length} />;
         })}
       </div>
     </>

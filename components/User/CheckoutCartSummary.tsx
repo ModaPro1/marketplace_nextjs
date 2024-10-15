@@ -64,7 +64,7 @@ export default function CheckoutCartSummary({ cart }: { cart: any }) {
       </div>
       <div className="flex justify-between text-lg pt-3 mt-3 border-t border-t-gray-300">
         <span>Total</span>
-        <span>${totalShipping + total}</span>
+        <span>${(totalShipping + total).toFixed(2)}</span>
       </div>
     </div>
   );

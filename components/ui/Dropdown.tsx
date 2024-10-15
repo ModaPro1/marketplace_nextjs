@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState, useEffect, useRef } from "react";
+import { ReactNode, useState, useEffect, useRef, MouseEvent } from "react";
 import { motion } from "framer-motion";
 
 export default function Dropdown({
@@ -22,24 +22,31 @@ export default function Dropdown({
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    const handleDocumentClick = (e: MouseEvent) => {
+    const handleDocumentClick = (e: Event) => {
       const target = e.target as Node;
       if (dropdownRef.current && (!dropdownRef.current.contains(target))) {
         setIsOpen(false);
       }
     };
-
+  
     document.addEventListener("mousedown", handleDocumentClick);
     return () => {
       document.removeEventListener("mousedown", handleDocumentClick);
     };
-  }, []);
+  }, []);  
 
   useEffect(() => {
     if(isOpen && onOpen) {
       onOpen()
     }
   }, [isOpen])
+
+  function handleClick(e: MouseEvent<HTMLDivElement>) {
+    const target = e.target as HTMLElement;
+    if(target.tagName == "A") {
+      setIsOpen(false)
+    }
+  }
 
   return (
     <div className="dropdown relative z-40" ref={dropdownRef}>
@@ -62,6 +69,7 @@ export default function Dropdown({
         </button>
       </div>
       <motion.div
+        onClick={handleClick}
         initial={{ display: "none", opacity: 0, scale: 0.9 }}
         animate={{ display: isOpen ? "block" : "none", opacity: isOpen ? 1 : 0, scale: isOpen ? 1 : 0.9 }}
         transition={{ duration: 0.2 }}

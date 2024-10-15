@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import LoadingDots from "./ui/LoadingDots";
 
 export default function ProductsFilter({ categories }: { categories: { id: string; name: string }[] }) {
   const router = useRouter();
@@ -11,6 +12,12 @@ export default function ProductsFilter({ categories }: { categories: { id: strin
   const [sort, setSort] = useState(searchParams.get("sort") || "");
   const [maxPrice, setMaxPrice] = useState(searchParams.get("maxPrice") || "");
   const [minPrice, setMinPrice] = useState(searchParams.get("minPrice") || "");
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(false);
+  }, [searchParams]);
+
 
   function filterChange(id: string, value: string) {
     if (id == "cat") {
@@ -18,6 +25,7 @@ export default function ProductsFilter({ categories }: { categories: { id: strin
     } else if (id == "sort") {
       setSort(value);
     }
+    setLoading(true)
     const currentParams = new URLSearchParams(window.location.search);
     currentParams.set(id, value);
     currentParams.delete("page");
@@ -27,6 +35,7 @@ export default function ProductsFilter({ categories }: { categories: { id: strin
 
   function setPrices(e: FormEvent) {
     e.preventDefault();
+    setLoading(true)
     const currentParams = new URLSearchParams(window.location.search);
     currentParams.set("minPrice", minPrice);
     currentParams.set("maxPrice", maxPrice);
@@ -34,6 +43,9 @@ export default function ProductsFilter({ categories }: { categories: { id: strin
     router.push(newPathname);
   }
 
+  if(loading) {
+    return <LoadingDots classes="py-5 mb-5 h-[72px] flex items-center" />
+  }
   return (
     <div className="filter pt-5 pb-5 px-[1px] mb-5 flex justify-between overflow-x-auto">
       <div className="flex me-5">

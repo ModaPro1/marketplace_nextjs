@@ -22,7 +22,7 @@ async function Product({ id }: { id: string }) {
   return (
     <div className="flex mt-10 gap-10 flex-col md:flex-row">
       <div className="slider w-full sm:w-[60%] mb-20 md:mb-0 h-72 md:h-96 md:w-[50%]">
-        <ImagesSlider images={product.images_list} pagination={true} imageProps={{sizes: "(max-width: 768px) 100vw, 50vw" }} />
+        <ImagesSlider images={product.images_list} pagination={"images"} imageProps={{sizes: "(max-width: 768px) 100vw, 50vw" }} />
       </div>
       <div className="flex-1">
         <h2 className="font-semibold text-3xl">{product.name}</h2>

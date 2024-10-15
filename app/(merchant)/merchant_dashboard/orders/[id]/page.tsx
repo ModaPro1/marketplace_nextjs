@@ -53,7 +53,7 @@ async function PageContent({ id }: { id: string }) {
                   </Link>
                   <span className="block text-sm text-gray-500">Option: {product.option?.name || "N/A"}</span>
                 </div>
-                <div className="flex gap-4 sm:gap-9 items-center me-5">
+                <div className="flex gap-4 sm:gap-9 items-center me-5 md:w-32">
                   <div>Qty: {product.quantity}</div>
                   <div>${product.price + (product.option?.price || 0)}</div>
                 </div>

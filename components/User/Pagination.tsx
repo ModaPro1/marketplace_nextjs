@@ -36,7 +36,7 @@ export default function Pagination({ totalPages, currentPage }: { totalPages: nu
   };
 
   if (loading) {
-    return <LoadingDots classes="mt-2 h-8" />;
+    return <LoadingDots classes="mt-2 h-8 flex items-center" />;
   }
 
   if (totalPages > 1) {

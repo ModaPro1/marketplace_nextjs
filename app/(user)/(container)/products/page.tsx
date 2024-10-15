@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 import { Suspense } from "react";
 import ProductsSkeleton from "@/components/ui/skeleton/Products";
 
-async function Filter(props: { searchParams: any }) {
+async function Filter() {
   const prisma = new PrismaClient();
   const categories = await prisma.category.findMany();
 
@@ -17,7 +17,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: any
     <>
       <div className="products">
         <Suspense fallback={<FilterSkeleton />}>
-          <Filter searchParams={searchParams} />
+          <Filter />
         </Suspense>
         <h1 className="font-semibold text-lg">All Products For You!</h1>
         <Suspense key={Math.random()} fallback={<ProductsSkeleton />}>

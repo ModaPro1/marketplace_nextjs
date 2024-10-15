@@ -1,0 +1,62 @@
+.swiper {
+  width: 100%;
+  height: 100%;
+  overflow: visible !important;
+}
+.swiper img {
+  width: 100%;
+  height: 100%;
+}
+
+.custom-pagination-swiper-images .swiper-pagination {
+  position: static !important;
+  margin-top: 20px;
+  color: #000;
+  text-align: left !important;
+  display: flex;
+  gap: 10px;
+}
+.custom-pagination-swiper-images .swiper-pagination-bullet {
+  width: 100px !important;
+  height: 100px !important;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: 0.3s;
+}
+.custom-pagination-swiper-images .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+@media (max-width: 991px) {
+  .custom-pagination-swiper-images .swiper-pagination-bullet {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
+
+.custom-pagination-swiper-dots .swiper-pagination {
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  z-index: 10;
+  bottom: -18px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: .3s;
+  opacity: 0;
+}
+.product-box:hover .custom-pagination-swiper-dots .swiper-pagination {
+  opacity: 1;
+}
+.custom-pagination-swiper-dots .swiper-pagination .swiper-pagination-bullet {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  @apply bg-main;
+  transition: .3s;
+  opacity: .5;
+  cursor: pointer;
+}
+.custom-pagination-swiper-dots .swiper-pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+}

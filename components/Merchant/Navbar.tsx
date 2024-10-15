@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { SidebarContext } from "@/context/MerchantSidebarContext";
 import { FaRegBell } from "react-icons/fa";
 import NotificationIcon from "./NotificationIcon";
+import Image from "next/image";
 
 export default function MerchantNavbar({
   user,
@@ -86,22 +87,23 @@ export default function MerchantNavbar({
         </Dropdown>
         <Dropdown
           icon={
-            <img
+            <Image
               src={user.store_image}
               alt="Merchant Store Image"
-              width={100}
+              width={60}
+              height={60}
               className="rounded-full object-cover w-11 h-w-11"
             />
           }
         >
           <div className="p-3 w-[180px] space-y-2 text-sm">
             <h6 className="pb-1.5 mb-1.5 border-b font-medium">{user.store_name}</h6>
-            <Link href="/merchant_dashboard/profile" className="text-gray-600 hover:text-main transition">
+            <Link href="/merchant_dashboard/profile" className="text-gray-600 hover:text-main transition block">
               <LuUser2 className="inline me-2" />
               My Profile
             </Link>
-            <form action={signout} className="text-gray-600 hover:text-main transition">
-              <button>
+            <form action={signout} className="">
+              <button className="text-gray-600 hover:text-main transition block text-start w-full">
                 <GrPowerShutdown className="inline me-2" />
                 Logout
               </button>

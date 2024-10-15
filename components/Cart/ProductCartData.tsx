@@ -90,7 +90,7 @@ export default function ProductCartData({ product }: { product: Product & { opti
         <button
           onClick={addToCart}
           disabled={buttonLoading}
-          className="flex items-center gap-2 border-2 border-main rounded-2xl px-3 text-main font-semibold py-1 text-sm disabled:opacity-70"
+          className="flex items-center gap-2 border-2 border-main rounded-2xl px-3 text-main font-semibold py-1 text-sm disabled:opacity-70 focus:outline-none focus:ring focus:ring-main/30 transition"
         >
           {buttonLoading ? <CgSpinnerAlt className="animate-spin" fontSize={21} /> : <LiaCartPlusSolid fontSize={21} />}
           Add to cart

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { motion } from "framer-motion";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -24,6 +24,13 @@ export default function NavItems(props: {
   userHasOrders: boolean;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const handleMobileLinksClick = (event: MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLElement;
+
+    if (target.tagName === 'A') {
+      setMenuOpen(false);
+    }
+  };
 
   return (
     <>
@@ -31,7 +38,7 @@ export default function NavItems(props: {
         <MainLogo />
 
         {/* Big Screens */}
-        <ul className="hidden md:flex gap-2 ">
+        <ul className="hidden md:flex gap-2">
           <li>
             <Link href="/">Home</Link>
           </li>
@@ -52,7 +59,7 @@ export default function NavItems(props: {
             transition: { duration: 0.3 },
           }}
         >
-          <div className="pt-52 space-y-4">
+          <div className="pt-52 space-y-4" onClick={handleMobileLinksClick}>
             <li>
               <Link href="/">Home</Link>
             </li>
