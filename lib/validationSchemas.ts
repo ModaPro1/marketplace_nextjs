@@ -41,6 +41,7 @@ export const productSchemaWithoutImage = z.object({
 export const contactFormSchema = z.object({
   name: z.string().min(1, "Name field is required"),
   email: z.string().email("Email field is required"),
+  subject: z.string().optional(),
   message: z.string().min(1, "Message field is required").max(300, "Message must be less than 300 characters"),
 });
 

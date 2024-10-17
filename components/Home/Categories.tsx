@@ -1,33 +1,9 @@
+import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Categories() {
-  const categories = [
-    {
-      name: "Men's Clothing",
-      image: "mens_clothings.png",
-    },
-    {
-      name: "Electronics & Devices",
-      image: "electronics.png",
-    },
-    {
-      name: "Home Appliances",
-      image: "home.png",
-    },
-    {
-      name: "Toys & Games",
-      image: "toys.png",
-    },
-    {
-      name: "Women's Clothing",
-      image: "women_clothings.png",
-    },
-    {
-      name: "Shoes",
-      image: "shoes.png",
-    },
-  ];
+export default async function Categories() {
+  const categories = await prisma.category.findMany()
 
   return (
     <div id="categories" className="py-10">
@@ -37,7 +13,7 @@ export default function Categories() {
           {categories.map((category) => {
             return (
               <Link key={category.name} href={`/products?cat=${encodeURIComponent(category.name)}`} className="text-center w-[100px] md:w-[120]">
-                <Image src={`/assets/categories/${category.image}`} alt={category.name} width={440} height={440} className="rounded-full" />
+                <Image src={category.image} alt={category.name} width={150} height={150} className="rounded-full" />
                 <h5 className="mt-5 leading-5">{category.name}</h5>
               </Link>
             );

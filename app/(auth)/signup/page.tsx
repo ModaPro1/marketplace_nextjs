@@ -19,7 +19,7 @@ function MerchantForm() {
   const inputs = [
     { type: "text", name: "store_name", label: "Store Name", placeholder: "Enter the store name" },
     { type: "file", name: "store_image", label: "Store Image", accept: "image/*" },
-    { type: "email", name: "email", label: "Personal Email", placeholder: "Enter your email address" },
+    { type: "email", name: "email", label: "Email Address", placeholder: "Enter your email address" },
     { type: "password", name: "password", label: "Password", placeholder: "Enter your password" },
   ];
 

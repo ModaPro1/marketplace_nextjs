@@ -54,7 +54,6 @@ export default async function Products({ searchParams }: { searchParams: any }) 
           <ProductBox product={product} key={product.id} />
         ))}
       </div>
-      {/* Pagination Component */}
       <div className="mt-10">
         <Pagination totalPages={totalPages} currentPage={currentPage} />
       </div>

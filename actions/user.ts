@@ -1,8 +1,11 @@
 "use server";
 
 import { getSession } from "@/lib/auth";
+import { contact_mail_template } from "@/lib/email_templates/contact_mail";
+import { transport } from "@/lib/mail";
 import { prisma } from "@/lib/prisma";
 import { formatZodError } from "@/lib/utils";
+import { contactFormSchema } from "@/lib/validationSchemas";
 import { Cart, Product, ProductOption } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { cache } from "react";
@@ -176,4 +179,15 @@ export async function likeProduct(productId: string) {
   }
 
   revalidatePath(`/products/${productId}`);
+}
+
+export async function sendContactMail(data: {name: string; email: string; subject?: string; message: string}) {
+  contactFormSchema.parse(data)
+
+  await transport.sendMail({
+    from: "mahmoudfarghly519@gmail.com",
+    to: "mahmoudfarghly519@gmail.com",
+    subject: "Contact Mail",
+    html: contact_mail_template(data.name, data.email, data.subject, data.message),
+  });
 }

@@ -4,7 +4,6 @@ import { FormEvent, useState } from "react";
 import InputBox from "../ui/InputBox";
 import { editUserProfile } from "@/actions/user";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function UserProfileForm({ userData }: any) {
   const [formData, setFormData] = useState({

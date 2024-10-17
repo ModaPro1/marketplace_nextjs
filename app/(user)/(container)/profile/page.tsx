@@ -2,6 +2,7 @@ import UserProfileForm from "@/components/User/ProfileForm";
 import UserShippingInfoForm from "@/components/User/ShippingInfoForm";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import "react-toastify/dist/ReactToastify.css";
 
 export default async function UserProfile() {
   const session = await getSession();

@@ -11,18 +11,31 @@ import CopyProductLink from "@/components/User/CopyProductLink";
 import LikeProduct from "@/components/User/LikeProduct";
 import { getSession } from "@/lib/auth";
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const product = await prisma.product.findUnique({ where: { id: params.id }, select: {name: true, description: true} });
+  
+  return {
+    title: product?.name || "",
+    description: product?.description || ""
+  }
+}
+
 async function Product({ id }: { id: string }) {
-  const session = await getSession()
+  const session = await getSession();
   const product = await prisma.product.findUnique({ where: { id: id }, include: { options: true } });
   if (!product) {
     return notFound();
   }
-  const productIsLiked = await prisma.productLike.findMany({where: {productId: id, userId: session.userId}})
-  
+  const productIsLiked = await prisma.productLike.findMany({ where: { productId: id, userId: session.userId } });
+
   return (
     <div className="flex mt-10 gap-10 flex-col md:flex-row">
       <div className="slider w-full sm:w-[60%] mb-20 md:mb-0 h-72 md:h-96 md:w-[50%]">
-        <ImagesSlider images={product.images_list} pagination={"images"} imageProps={{sizes: "(max-width: 768px) 100vw, 50vw" }} />
+        <ImagesSlider
+          images={product.images_list}
+          pagination={"images"}
+          imageProps={{ sizes: "(max-width: 768px) 100vw, 50vw", priority: true}}
+        />
       </div>
       <div className="flex-1">
         <h2 className="font-semibold text-3xl">{product.name}</h2>
@@ -37,7 +50,9 @@ async function Product({ id }: { id: string }) {
             </Link>
           </Tooltip>
           <CopyProductLink link={`/products/${product.id}`} />
-          {session.userType == "user" && (<LikeProduct productIsLiked={!!(productIsLiked.length > 0)} productId={product.id} />)}
+          {session.userType == "user" && (
+            <LikeProduct productIsLiked={!!(productIsLiked.length > 0)} productId={product.id} />
+          )}
         </div>
         <div className="h-[1px] w-full bg-gray-300 mt-5"></div>
         <div className="mt-5">

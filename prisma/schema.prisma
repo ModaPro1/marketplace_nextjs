@@ -46,6 +46,7 @@ model Merchant {
 
 model Category {
   id   String @id @default(cuid())
+  image String @default("")
   name String @unique
 
   products Product[]

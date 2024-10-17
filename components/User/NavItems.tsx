@@ -117,11 +117,11 @@ export default function NavItems(props: {
             </>
           ) : (
             <Dropdown icon={<FaRegUserCircle className="text-xl" />}>
-              <div className="px-3 py-2">
+              <div className="px-3 py-2 text-sm">
                 <Link href="/login" className="block">
                   Login
                 </Link>
-                <Link href="/signup" className="block mt-1">
+                <Link href="/signup" className="block mt-1.5">
                   Sign up
                 </Link>
               </div>

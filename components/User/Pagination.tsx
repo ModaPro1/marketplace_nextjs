@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import LoadingDots from "../ui/LoadingDots";
+import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 
 export default function Pagination({ totalPages, currentPage }: { totalPages: number; currentPage: number }) {
   const [selectedPagination, setSelectedPagination] = useState(currentPage);
@@ -23,9 +24,9 @@ export default function Pagination({ totalPages, currentPage }: { totalPages: nu
       pages.push(
         <button
           key={i}
-          className={`w-8 h-8 flex justify-center items-center ${
-            selectedPagination === i ? "bg-main text-white" : "bg-gray-300"
-          } rounded`}
+          className={`${
+            selectedPagination === i ? "bg-main text-white" : "text-slate-600"
+          } hover:bg-main hover:text-white`}
           onClick={() => paginationClick(i)}
         >
           {i + 1}
@@ -35,11 +36,32 @@ export default function Pagination({ totalPages, currentPage }: { totalPages: nu
     return pages;
   };
 
-  if (loading) {
-    return <LoadingDots classes="mt-2 h-8 flex items-center" />;
-  }
-
   if (totalPages > 1) {
-    return <div className="flex space-x-3">{createPageNumbers()}</div>;
+    return (
+      <>
+        {loading && (
+          <div className="bg-white shadow rounded fixed left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] w-20 h-20 flex justify-center items-center z-50">
+            <LoadingDots />
+          </div>
+        )}
+        <div className="flex space-x-2 *:w-8 *:h-8 *:flex *:justify-center *:items-center *:rounded *:font-medium">
+          <button
+            className="text-slate-600 hover:bg-main hover:text-white disabled:opacity-60"
+            disabled={selectedPagination == 0}
+            onClick={() => paginationClick(selectedPagination - 1)}
+          >
+            <TfiAngleLeft />
+          </button>
+          {createPageNumbers()}
+          <button
+            className="text-slate-600 hover:bg-main hover:text-white disabled:opacity-60"
+            disabled={selectedPagination + 1 == totalPages}
+            onClick={() => paginationClick(selectedPagination + 1)}
+          >
+            <TfiAngleRight />
+          </button>
+        </div>
+      </>
+    );
   }
 }

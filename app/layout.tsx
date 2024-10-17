@@ -3,8 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "NextJS - Ecommerce",
-  description: "Ecommerce Application",
+  title: {
+    default: "Modastore Marketplace",
+    template: "%s | Modastore Marketplace"
+  },
+  description: "Modastore Marketplace"
 };
 
 const font = Inter({

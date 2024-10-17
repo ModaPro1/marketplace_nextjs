@@ -15,7 +15,7 @@ async function Filter() {
 export default async function ProductsPage({ searchParams }: { searchParams: any }) {
   return (
     <>
-      <div className="products">
+      <div className="products relative">
         <Suspense fallback={<FilterSkeleton />}>
           <Filter />
         </Suspense>

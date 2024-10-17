@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import { orderSuccessTemplate } from "./email_templates/order_success";
 
 const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
-const transport = nodemailer.createTransport({
+export const transport = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: SMTP_EMAIL,
@@ -31,4 +31,8 @@ export async function sendPaymentSuccessMail(
   } catch (error) {
     console.log("Error at sending email", error);
   }
+}
+
+export async function sendContactEmail() {
+
 }
