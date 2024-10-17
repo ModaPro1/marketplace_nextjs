@@ -11,7 +11,7 @@ export default function CartDropdown() {
   const { cart, isLoading } = useContext(CartContext);
 
   return (
-    <Dropdown disabled={isLoading} count={cart.length} icon={<PiShoppingCartBold className="text-xl" />}>
+    <Dropdown rightDropdown disabled={isLoading} count={cart.length} icon={<PiShoppingCartBold className="text-xl" />}>
       <div className="px-3 py-2 w-72">
         <h2 className="mb-2 pb-2 border-b">Shopping Cart</h2>
         <div className="items">

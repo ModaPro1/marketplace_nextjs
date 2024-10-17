@@ -9,14 +9,16 @@ export default function Dropdown({
   count,
   showPing,
   onOpen,
-  disabled
+  disabled,
+  rightDropdown
 }: {
   icon: ReactNode;
   children: ReactNode;
   count?: number;
   showPing?: boolean;
   onOpen?: () => void;
-  disabled?: boolean
+  disabled?: boolean;
+  rightDropdown?: boolean
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -73,7 +75,7 @@ export default function Dropdown({
         initial={{ display: "none", opacity: 0, scale: 0.9 }}
         animate={{ display: isOpen ? "block" : "none", opacity: isOpen ? 1 : 0, scale: isOpen ? 1 : 0.9 }}
         transition={{ duration: 0.2 }}
-        className="dropdown-content absolute min-w-32 right-0 top-[calc(100%+5px)] rounded-md border border-gray-100 shadow-md bg-white overflow-hidden"
+        className={`dropdown-content absolute min-w-32 ${rightDropdown ? 'left-0': 'right-0'} top-[calc(100%+5px)] rounded-md border border-gray-100 shadow-md bg-white overflow-hidden`}
       >
         {children}
       </motion.div>
