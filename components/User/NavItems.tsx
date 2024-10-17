@@ -39,7 +39,7 @@ export default function NavItems(props: {
             <Link href="/products">Shop</Link>
           </li>
           <li>
-            <Link href="#">Contact</Link>
+            <Link href="/contact">Contact</Link>
           </li>
         </ul>
 
@@ -65,7 +65,7 @@ export default function NavItems(props: {
               </Link>
             </li>
             <li>
-              <Link href="#" className="block p-2 border text-sm rounded">
+              <Link href="/contact" className="block p-2 border text-sm rounded">
                 Contact
               </Link>
             </li>
