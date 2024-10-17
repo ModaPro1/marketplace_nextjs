@@ -5,7 +5,6 @@ import RemoveFromCartButton from "@/components/Cart/RemoveButton";
 import { CartContext } from "@/context/UserCartContext";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { useContext } from "react";
 
 export default function UserCart() {
@@ -30,7 +29,7 @@ export default function UserCart() {
                 <div className="flex justify-between items-center flex-wrap">
                   <h5 className="font-semibold">{item.product.name}</h5>
                   <div>
-                    ${option ? (item.product.price + option.price) * item.quantity : item.product.price * item.quantity}
+                    ${(option ? (item.product.price + option.price) * item.quantity : item.product.price * item.quantity).toFixed(2)}
                   </div>
                 </div>
                 {option && (

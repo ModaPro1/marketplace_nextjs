@@ -29,7 +29,7 @@ export default function ProductCartData({ product }: { product: Product & { opti
       basePrice += option.price;
     }
 
-    setPrice(basePrice * quantity);
+    setPrice(+(basePrice * quantity).toFixed(2));
   }, [selectedOption, quantity]);
 
   async function addToCart() {
