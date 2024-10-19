@@ -13,7 +13,7 @@ export default function ProductBox(props: { product: Product; isAdmin?: boolean;
         <div className="h-48 md:h-56">
           <ImagesSlider
             images={props.product.images_list}
-            imageProps={{ sizes: "(max-width: 767px) 50vw, (max-width: 991px) 33vw, 25vw" }}
+            imageProps={{ sizes: "(max-width: 767px) 50vw, (max-width: 991px) 33vw, 25vw", className: "object-cover" }}
             pagination="dots"
             delay={2500}
           />

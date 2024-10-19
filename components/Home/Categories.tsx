@@ -8,7 +8,7 @@ export default async function Categories() {
   return (
     <div id="categories" className="py-10">
       <div className="custom-container">
-        <h1 className="text-center text-2xl font-medium">Shop by categories</h1>
+        <h1 className="text-center text-xl sm:text-2xl font-medium">Shop by categories</h1>
         <div className="list flex justify-center mt-10 gap-10 flex-wrap">
           {categories.map((category) => {
             return (

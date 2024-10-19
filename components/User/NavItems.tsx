@@ -46,7 +46,7 @@ export default function NavItems(props: {
         {/* Mobile Screens */}
         <RxHamburgerMenu className="cursor-pointer text-xl md:hidden" onClick={() => setMenuOpen((prev) => !prev)} />
         <motion.ul
-          className="select-none px-4 absolute bg-white/75 z-50 top-full left-0 w-full md:hidden overflow-hidden h-0 max-h-[calc(100vh-62px)]"
+          className="select-none px-4 absolute bg-white/85 z-50 top-full left-0 w-full md:hidden overflow-hidden h-0 max-h-[calc(100vh-62px)]"
           animate={{
             height: menuOpen ? "100vh" : "0",
             transition: { duration: 0.3 },

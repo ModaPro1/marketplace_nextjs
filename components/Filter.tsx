@@ -69,6 +69,7 @@ export default function ProductsFilter({ categories }: { categories: { id: strin
             <button className="text-xs bg-black text-white px-3 rounded-2xl">OK</button>
           </form>
           <select
+            aria-label="Category Filter"
             onChange={(e) => filterChange("cat", e.target.value)}
             value={category}
             className="py-2 px-4 w-[180px] rounded-2xl text-xs font-medium ring-1 ring-gray-400 focus:outline-main ms-10 bg-transparent"
@@ -85,6 +86,7 @@ export default function ProductsFilter({ categories }: { categories: { id: strin
         </div>
         <div>
           <select
+            aria-label="Sor Filter"
             onChange={(e) => filterChange("sort", e.target.value)}
             value={sort}
             className="py-2 px-4 rounded-2xl text-xs font-medium bg-transparent ring-1 ring-gray-400 focus:outline-main w-[150px]"

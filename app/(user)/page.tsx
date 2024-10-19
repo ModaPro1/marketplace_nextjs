@@ -13,8 +13,8 @@ async function LatestProducts() {
   const latestProducts = await prisma.product.findMany({ orderBy: { createdAt: "desc" }, take: 6 });
   return (
     <div className="custom-container overflow-x-hidden">
-      <div className="flex justify-between items-end mb-7">
-        <h1 className="text-2xl font-medium">Latest Products</h1>
+      <div className="flex justify-between gap-2 flex-wrap items-end mb-7">
+        <h1 className="text-xl sm:text-2xl font-medium">Latest Products</h1>
         <Link href="/products" className="text-sm text-main flex items-center focus:underline">
           <span className="me-1">Browse All Products</span>
           <FaAngleRight />

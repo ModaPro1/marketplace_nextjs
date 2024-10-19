@@ -59,8 +59,8 @@ export default function LatestProductsSlider({ latestProducts }: { latestProduct
         </SwiperSlide>
       ))}
       <SwiperSlide>
-        <div className="mt-20 ps-5">
-          <Link href="/products?sort=asc+updatedAt" className="font-semibold flex items-center gap-2 text-main bg-main bg-opacity-20 py-2 px-3 w-fit rounded hover:scale-105 active:scale-95 transition">
+        <div className="mt-20 ps-0 sm:ps-5">
+          <Link href="/products?sort=asc+updatedAt" className="text-sm sm:text-base font-semibold flex items-center gap-2 text-main bg-main bg-opacity-20 py-2 px-3 w-fit rounded hover:scale-105 active:scale-95 transition">
             <TbShoppingBag className="text-xl" />
             Browse More
           </Link>
